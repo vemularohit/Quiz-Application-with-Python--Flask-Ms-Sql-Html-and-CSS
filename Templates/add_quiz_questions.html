@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Add Quiz Questions
+
+{% endblock %}
+
+{% block css %}
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #111;
+    }
+
+    .active {
+        background-color: #4CAF50;
+    }
+    Body{
+        background-color: silver;
+    }
+    .container{
+        background-color: burlywood;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .select{
+        padding: 5px 10px;
+        border-radius: 10px; 
+        border: none;
+    }
+    .input{
+        width: 25%;   
+            margin: 8px 0;  
+            padding: 12px 20px;   
+            display: inline-block;   
+            border: none;
+            box-sizing: border-box; 
+            border-radius: 10px;
+    }
+    .btn{
+        background-color: #4CAF50;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: white;
+        border: none;
+    }
+    .btn:hover {
+        opacity: 0.7;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+{% block body %}
+
+<ul>
+    <li><a href="{{ url_for('teacher_home') }}">Home</a></li>
+    <li><a href="{{ url_for('add') }}">ADD AND VIEW COURSE</a></li>
+    <li><a href="{{ url_for('add_quiz') }}">ADD QUIZ</a></li>
+    <li><a class="active" href="{{ url_for('add_quiz_questions') }}">ADD QUIZ QUESTIONS</a></li>
+    <li><a href="{{ url_for('view_quiz') }}">VIEW QUIZ</a></li>
+    <li style="float:right"><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+</ul>
+
+
+
+
+<form action="/add_quiz_questions" method="POST">
+
+    <div class="container">
+        <br>
+        <center>
+            <h1> Add Quiz Questions </h1>
+        </center>
+
+        <center>
+
+            {% if data == None %}
+            <center><button><a href="{{ url_for('add') }}"></a></button> </center>
+
+            {% else %}
+            Choose a Course :
+            <SELECT name="course_id" class="select">
+                {% for c in courseadd %}
+                <option value={{c.ID}}>{{c.ID}} - {{c.course}}</option>
+                {% endfor %}
+            </SELECT>
+            {% endif %}
+        </center><br>
+
+        <center>
+
+            {% if data == None %}
+            <center><button><a href="{{ url_for('add_quiz') }}"></a></button> </center>
+
+            {% else %}
+            Choose a Quiz :
+            <SELECT name="quiz_id" class="select">
+                {% for c in QuizNames %}
+                <option value={{c.id}}>{{c.course_id}} - {{c.quiz_name}}</option>
+                {% endfor %}
+            </SELECT>
+            {% endif %}
+        </center><br>
+
+        <center><label>Question: </label>
+            <input type="text" placeholder="Enter your Question" name="question" required class ="input">
+        </center> <br>
+
+
+
+        {% for c in addoption %}
+
+        {% endfor %}
+        
+
+        <center><label>Option 1: </label>
+            <input type="text" id="option1" placeholder="Enter Option 1" name="option1" required class ="input">
+        </center><br>
+
+        <center><label>Option 2: </label>
+            <input type="text" id="option2" placeholder="Enter Option 2" name="option2" required class ="input">
+        </center> <br>
+
+        <center><label>Option 3: </label>
+            <input type="text" id="option3" placeholder="Enter Option 3" name="option3" required class ="input">
+        </center><br>
+
+        <center><label>Option 4: </label>
+            <input type="text" id="option4" placeholder="Enter Option 4" name="option4" required class ="input">
+        </center><br>
+
+    
+
+        <center>
+            Please tick the correct answer<br><br>
+            <input type="checkbox" id="option1" name="correct_answer" value="1">
+            <label for="Option 1"> Option 1</label>
+            <input type="checkbox" id="option2" name="correct_answer" value="2">
+            <label for="Option 2"> Option 2</label>
+            <input type="checkbox" id="option3" name="correct_answer" value="3">
+            <label for="Option 3"> Option 3</label>
+            <input type="checkbox" id="option4" name="correct_answer" value="4">
+            <label for="Option 4"> Option 4</label>
+        </center>
+
+        <br>
+
+        <center><button type="submit" class = "btn">Create</button> </center>
+        <br>
+        <br>
+    </div>
+
+</form>
+
+{% endblock %}

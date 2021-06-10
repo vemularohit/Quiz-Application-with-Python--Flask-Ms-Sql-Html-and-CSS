@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUIZ</title>
+
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #4CAF50;
+    }
+   .whole2{
+      background-color: burlywood;
+      padding-left: 430px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-top: 40px;
+
+    }
+    Body{
+      background-color: silver;
+    }
+</style>
+</head>
+
+<body>
+
+  <ul>
+    <li><a class="active" href="{{ url_for('student_home') }} ">HOME</a></li>
+    <li><a href="{{ url_for('my_courses') }}">COURSES</a></li>
+    <li><a href="{{ url_for('show_studentquiz') }}">TAKE QUIZ</a></li>
+    <li style="float:right"><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+  </ul>
+  <div class="whole2">
+    <h1 >Welcome Student, Your are successfully login</h1>
+  </div>
+
+</body>
+</html>

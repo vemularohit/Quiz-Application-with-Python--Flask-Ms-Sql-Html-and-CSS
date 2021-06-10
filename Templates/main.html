@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Main
+
+{% endblock %}
+
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+
+{% block css %}
+<style>
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  li {
+    float: left;
+  }
+
+
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+  .active {
+    background-color: #4CAF50;
+  }
+  Body{
+    background-color: silver;
+  }
+  .whole{
+    margin-top: 40px;
+    background-color: burlywood;
+    font-size: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+</style>
+{% endblock %}
+
+
+{% block js %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<ul>
+  <li><a href="{{ url_for('login') }} ">Login</a></li>
+  <li><a href="{{ url_for('student_signup') }} ">Student Sign Up</a></li>
+  <li><a href="{{ url_for('teacher_signup') }} ">Teacher Sign Up</a></li>
+</ul>
+
+<center>
+<h1 class="whole">
+  Welcome To Our Education Portal
+</h1>
+</center>
+
+{% endblock %}
+
+
+
+<!-- <a href="{{ url_for('login') }} "> Logout</a> -->

@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+View Quiz
+
+{% endblock %}
+
+
+{% block css %}
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #111;
+    }
+
+    .active {
+        background-color: #4CAF50;
+    }
+
+    Body {
+        background-color: silver;
+    }
+
+    .container {
+        background-color: burlywood;
+    }
+
+    .row {
+        background-color: burlywood;
+    }
+
+    .whole {
+        color: purple;
+    }
+
+    .btn {
+        background-color: #4CAF50;
+        padding: 5px 10px;
+        border-radius: 10px;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        opacity: 0.7;
+    }
+
+    .select {
+        padding: 5px 10px;
+        border-radius: 10px;
+        border: none;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block body %}
+
+<ul>
+    <li><a href="{{ url_for('student_home') }} ">HOME</a></li>
+    <li><a href="{{ url_for('my_courses') }}">COURSES</a></li>
+    <li><a class="active" href="{{ url_for('show_studentquiz') }}">TAKE QUIZ</a></li>
+    <li style="float:right"><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+</ul>
+
+
+<br>
+
+
+<div class="container">
+
+    <center>
+        <form action="/show_studentquiz" method="POST">
+            <br>
+            <br>
+
+            <center>
+                Choose a Course
+                <SELECT name="course_id" class="select">
+                    {% for c in courseadd %}
+                    <option value={{c.ID}}>{{c.course}}</option>
+                    {% endfor %}
+                </SELECT>
+                <button type="submit" class="btn" ;>
+                    Search
+                </button>
+
+            </center>
+
+            <br>
+
+            <center>
+                Choose a Quiz
+                <SELECT name="quiz_id" class="select">
+                    {% for c in QuizNames %}
+                    <option value={{c.id}}>{{c.quiz_name}}</option>
+                    {% endfor %}
+                </SELECT>
+                <button type="submit" class="btn">
+                    Search
+                </button>
+            </center>
+            <br>
+
+        </form>
+    </center>
+</div>
+
+<div class="row">
+
+    {% if quizes %}
+
+    <h1 class="whole">START QUIZ</h1>
+    <form action="/result_studentquiz" method="POST">
+        <ol>
+            <table>
+
+
+                {%for i in quizes%}
+                <tr>
+
+
+                    <dl>
+                        <dt>
+                            <li>{{ i.question }}</li>
+                        </dt><br>
+
+                        <dd>
+                            {%for a in ans%}
+                                {% if a.q_id == i.id %}
+                                    <input type="checkbox" name={{i.id}} value={{a.correct_ans}}>
+                                    <label>
+                                        {{ a.answer }} 
+                                    </label>
+
+                                    
+                                    <br>
+                                {% endif %}
+                            {%endfor%}
+                        </dd>
+
+                    </dl>
+
+                </tr>
+
+                {%endfor%}
+
+                <button type="submit" class="btn">
+                    End Test
+                </button>
+
+                {% else %}
+
+                <h1>
+                    NO QUESTIONS FOUND!
+                </h1>
+
+
+                {% endif %}
+
+            </table>
+        </ol>
+
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+ADD QUIZ
+
+{% endblock %}
+
+{% block css %}
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: left;
+    }
+
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #111;
+    }
+
+    .active {
+        background-color: #4CAF50;
+    }
+
+    Body {
+        background-color: silver;
+    }
+    .container{
+        width:100%;
+        height: 50%;
+        background-color:burlywood;
+        margin-top: 40px;
+    }
+    .whole{
+        width:100%;
+        height: 50%;
+        background-color:burlywood;
+        margin-top: 40px;
+        padding-bottom: 40px;
+    }
+    button {   
+           background-color: #4CAF50;   
+           width: 10%;  
+            color: white;   
+            padding: 15px;   
+            margin: 10px 0px;   
+            border: none;   
+            cursor: pointer;
+            border-radius: 10px;   
+             }
+    button:hover {
+        opacity: 0.7;
+    }
+
+    .input{
+        width: 25%;   
+            margin: 8px 0;  
+            padding: 12px 20px;   
+            display: inline-block;   
+            border: none;
+            box-sizing: border-box; 
+            border-radius: 10px;
+    }
+    .select{
+        padding: 5px 10px;
+        border-radius: 10px; 
+        border: none;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block body %}
+
+<ul>
+    <li><a href="{{ url_for('teacher_home') }}">Home</a></li>
+    <li><a href="{{ url_for('add') }}">ADD AND VIEW COURSE</a></li>
+    <li><a class="active" href="{{ url_for('add_quiz') }}">ADD QUIZ</a></li>
+    <li><a href="{{ url_for('add_quiz_questions') }}">ADD QUIZ QUESTIONS</a></li>
+    <li><a href="{{ url_for('view_quiz') }}">VIEW QUIZ</a></li>
+    <li style="float:right"><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+</ul>
+
+
+
+
+
+
+<form action="/add_quiz" method="POST">
+
+    <div class="container">
+        <br>
+        
+        <center>
+            <h1> Add Quiz </h1>
+        </center>
+        <center>
+
+            {% if data == None %}
+            <center><button><a href="{{ url_for('add') }}"></a></button> </center>
+
+            {% else %}
+            Choose a Course
+            <SELECT name="course_id" class = "select">
+                {% for c in courseadd %}
+                <option value={{c.ID}}>{{c.ID}}-{{c.course}}</option>
+                {% endfor %}
+            </SELECT>
+            {% endif %}
+        </center><br>
+
+
+        <center><label>Quiz Name: </label>
+            <input type="text" placeholder="Enter your Quiz Name" name="quiz_name" required class = "input">
+        </center> <br>
+
+
+        <center><button type="submit" class = "button">Create Quiz</button> </center>
+        <br>
+    </div>
+
+
+    <div class="whole">
+        <br>
+        <center>
+            <table>
+                <tr>
+                    <th>
+                        <h2>Courses and Quiz Names </h2>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Course - Quiz Name <br><br></th>
+                </tr>
+                {% if QuizNames %}
+                {%for i in QuizNames%}
+                <tr>
+                    <td>{{ i.course_id }} - {{ i.quiz_name }}</td>
+
+                </tr>
+                {%endfor%}
+                {% endif %}
+
+            </table>
+        </center>
+    </div>
+
+    {% endblock %}

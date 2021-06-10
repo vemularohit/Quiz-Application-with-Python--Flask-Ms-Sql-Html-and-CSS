@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUIZ</title>
+
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+
+    li {
+      float: left;
+    }
+
+
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: #4CAF50;
+    }
+
+    Body{
+      background-color: silver;
+    }
+    .whole{
+      background-color: burlywood;
+      padding-left: 50px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul>
+    <li><a class="active" href="{{ url_for('teacher_home') }}">Home</a></li>
+    <li><a href="{{ url_for('add') }}">ADD AND VIEW COURSE</a></li>
+    <li><a href="{{ url_for('add_quiz') }}">ADD QUIZ</a></li>
+    <li><a href="{{ url_for('add_quiz_questions') }}">ADD QUIZ QUESTIONS</a></li>
+    <li><a href="{{ url_for('view_quiz') }}">VIEW QUIZ</a></li>
+    <li style="float:right"><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+  </ul>
+
+  <center>
+    <h1 class = "whole">Welcome Teacher, Your are successfully login</h1>
+  </center>
+
+
+</body>
+
+</html>
